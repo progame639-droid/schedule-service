@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Расписание группы</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div>
+        <h1>Расписание</h1>
+        <p>Web-сервис учебного расписания</p>
+      </div>
+      <div class="status" id="status">Подключение...</div>
+    </header>
+
+    <section class="panel">
+      <label for="groupSelect">Группа</label>
+      <select id="groupSelect"></select>
+
+      <div class="buttons">
+        <button id="todayBtn">Сегодня</button>
+        <button id="nowBtn">Что сейчас?</button>
+      </div>
+    </section>
+
+    <section class="chat" id="chat">
+      <div class="message bot">
+        Выберите группу и нажмите «Сегодня» или «Что сейчас?».
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
