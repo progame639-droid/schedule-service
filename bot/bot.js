@@ -2,8 +2,8 @@ require("dotenv").config();
 const { Telegraf, Markup } = require("telegraf");
 const { createClient } = require("@supabase/supabase-js");
 
-const bot = new Telegraf(process.env.BOT_TOKEN);
-const db = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
+const bot = new Telegraf(process.env.8754510288:AAGB8M_WuLDTs8G2_9ucmDABNk6ZpYrugEg);
+const db = createClient(process.env.https://nhigmexuojrvbbhftptd.supabase.co, process.env.sb_publishable_gNP9iU7qkBQmh6BOf8JNyQ_eNiuNAhI);
 const selectedGroups = new Map();
 
 function todayNumber() {
