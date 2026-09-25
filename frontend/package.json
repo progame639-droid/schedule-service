@@ -1,9 +1,0 @@
-{
-  "name": "schedule-telegram-vercel",
-  "version": "1.0.0",
-  "private": true,
-  "dependencies": {
-    "@supabase/supabase-js": "^2.57.4",
-    "telegraf": "^4.16.3"
-  }
-}
