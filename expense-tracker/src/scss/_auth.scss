@@ -1,0 +1,18 @@
+@use 'variables' as v;
+.auth {
+  &__account { color: v.$accent; font-size: 14px; overflow-wrap: anywhere; }
+  &__description { color: v.$muted; font-size: 14px; margin: -8px 0 22px; }
+  &__tabs { display: flex; gap: 4px; border: 1px solid v.$border; border-radius: 10px; background: v.$bg; padding: 4px; }
+  &__tab { background: transparent; border: 0; color: v.$muted; padding: 10px; border-radius: 7px; font-size: 14px; font-weight: 600; cursor: pointer; flex: 1; &--active { background: v.$surface-hover; color: v.$text; } }
+  &__password-label { display: flex; align-items: end; justify-content: space-between; gap: 10px; }
+  &__text-button { border: 0; background: none; padding: 4px 0; color: v.$primary; font-size: 14px; cursor: pointer; }
+  &__hint { color: v.$muted; font-size: 12px; line-height: 1.7; }
+  &__captcha { margin-top: 18px; min-width: 0; }
+  &__message { font-size: 14px; color: v.$accent; margin: 18px 0; &--error { color: v.$danger; } }
+  &__submit { margin-top: 20px; width: 100%; }
+  &__forgot { display: block; margin: 16px auto 0; }
+  &__security { color: v.$muted; font-size: 12px; text-align: center; border-top: 1px solid v.$border; padding-top: 18px; margin-top: 24px; }
+  &__qr { display: block; width: 210px; max-width: 100%; aspect-ratio: 1; margin: 20px auto; padding: 12px; border-radius: 12px; background: white; }
+  &__secret { display: block; color: v.$accent; word-break: break-all; font-size: 14px; padding: 12px; border: 1px solid v.$border; border-radius: 8px; }
+  &__code { text-align: center; letter-spacing: 8px; font-size: 28px; }
+}

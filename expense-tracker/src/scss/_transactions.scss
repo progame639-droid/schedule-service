@@ -1,0 +1,28 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+.transactions {
+  scroll-margin-top: 24px;
+  &__heading { flex-wrap: wrap; }
+  &__count { padding: 3px 8px; border: 1px solid v.$border; border-radius: 7px; color: v.$muted; font-size: 12px; margin-left: 8px; }
+  &__tools { display: flex; align-items: center; gap: 12px; }
+  &__columns { display: grid; grid-template-columns: minmax(180px, 2fr) minmax(130px, 1fr) 110px minmax(110px, 1fr) 32px; gap: 14px; padding: 14px 0; color: v.$muted; font-size: 12px; border-bottom: 1px solid v.$border; }
+  &__list { margin: 0; padding: 0; list-style: none; }
+  &__footer { color: v.$muted; margin: 18px 0 0; font-size: 12px; }
+}
+.transaction-item {
+  display: grid; grid-template-columns: minmax(180px,2fr) minmax(130px,1fr) 110px minmax(110px,1fr) 32px; gap: 14px; align-items: center; padding: 16px 0; border-bottom: 1px solid v.$border;
+  &__main { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  &__icon { @include m.flex-center; flex: 0 0 42px; height: 42px; border-radius: 12px; }
+  &__title { font-size: 14px; font-weight: 600; margin: 0; overflow-wrap: anywhere; }
+  &__type { font-size: 12px; color: v.$muted; }
+  &__date { color: v.$muted; font-size: 14px; }
+  &__amount { font-size: 14px; font-weight: 650; text-align: right; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; &--income { color: v.$accent; } &--expense { color: v.$danger; } }
+  &__delete { opacity: .6; &:hover, &:focus-visible { opacity: 1; color: v.$danger; } }
+}
+.search {
+  display: flex; align-items: center; gap: 8px; border: 1px solid v.$border; border-radius: 9px; padding: 8px 12px; color: v.$muted; width: 208px;
+  &__input { width: 100%; min-width: 0; background: none; border: 0; color: v.$text; font: inherit; font-size: 14px; outline: none; }
+  &:focus-within { border-color: v.$primary; }
+}
+.badge { display: inline-block; width: fit-content; font-size: 12px; padding: 4px 8px; border-radius: 6px; }
+.empty { text-align: center; padding: 42px 18px; &__icon { color: v.$muted; width: 36px; height: 36px; } &__title { font-size: 18px; margin: 14px 0 6px; } &__text { color: v.$muted; font-size: 14px; margin: 0; } }
