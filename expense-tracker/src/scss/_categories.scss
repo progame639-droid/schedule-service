@@ -1,8 +1,0 @@
-@use 'variables' as v;
-@each $name, $color in v.$categories {
-  .category--#{$name} { background-color: rgba($color,.12); color: $color; border-left: 3px solid $color; }
-  .category-color--#{$name} { background-color: $color; }
-}
-@for $i from 1 through 3 {
-  .mt-#{$i} { margin-top: $i * 8px; }
-}
