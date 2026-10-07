@@ -1,0 +1,44 @@
+@use 'mixins' as m;
+@use 'variables' as v;
+@include m.respond-to(tablet) {
+  .sidebar { width: 190px; padding: 30px 16px; &__brand { font-size: 26px; } &__label { font-size: 12px; letter-spacing: .3px; } }
+  .workspace { margin-left: 190px; }
+  .header { padding: 20px 24px; &__breadcrumb { display: none; } &__profile { margin-left: auto; } }
+  .dashboard { padding: 28px 24px; }
+  .analytics { grid-template-columns: 1fr; }
+  .summary { gap: 12px; }
+  .summary-card { padding: 18px; &__value { font-size: 27px; } }
+  .transactions { &__tools { width: 100%; } &__columns { grid-template-columns: minmax(150px,2fr) minmax(100px,1fr) 85px minmax(90px,1fr) 32px; gap: 8px; } }
+  .transaction-item { grid-template-columns: minmax(150px,2fr) minmax(100px,1fr) 85px minmax(90px,1fr) 32px; gap: 8px; }
+  .search { flex: 1; width: auto; }
+  .category-chart { justify-content: center; &__legend { max-width: 350px; } }
+}
+@include m.respond-to(mobile) {
+  .sidebar { position: static; width: 100%; padding: 16px 20px; border-right: 0; border-bottom: 1px solid v.$border; flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; &__brand { font-size: 24px; } &__mark { width: 31px; height: 31px; font-size: 25px; } &__label, &__bottom { display: none; } &__nav { display: flex; gap: 4px; } &__link { padding: 9px 12px; } }
+  .workspace { margin-left: 0; }
+  .header { padding: 14px 20px; min-height: 65px; &__profile { width: 100%; justify-content: space-between; gap: 8px; } &__name { max-width: 100px; } &__auth { padding: 8px 10px; } }
+  .dashboard { padding: 26px 20px; &__heading { flex-wrap: wrap; align-items: start; } &__title { font-size: 36px; } &__footer { flex-wrap: wrap; } }
+  .summary { grid-template-columns: 1fr 1fr; }
+  .summary-card { &--balance { grid-column: 1 / -1; } &__value { font-size: 28px; } &--balance .summary-card__value { font-size: 42px; margin: 16px 0; } }
+  .panel { padding: 20px; }
+  .transactions { &__columns { display: none; } &__tools { flex-wrap: wrap; } &__list { display: grid; gap: 12px; } }
+  .transaction-item { grid-template-columns: 1fr auto; gap: 10px; padding: 16px; border: 1px solid v.$border; border-radius: 14px; &__main { grid-column: 1; grid-row: 1; } &__delete { grid-column: 2; grid-row: 1; } &__category { grid-column: 1; grid-row: 2; } &__date { grid-column: 1; grid-row: 3; font-size: 12px; } &__amount { grid-column: 2; grid-row: 2 / 4; align-self: end; max-width: 120px; } }
+  .analytics { gap: 16px; }
+  .chart { &__legend { margin-top: 4px; } }
+  .analytics__trend .panel__heading { flex-wrap: wrap; }
+}
+@include m.respond-to(small) {
+  .sidebar { padding: 16px; flex-wrap: wrap; &__nav { margin-left: auto; } &__link { padding: 8px; font-size: 12px; gap: 6px; } }
+  .header { padding: 12px 16px; &__name { display: none; } &__auth { font-size: 12px; } }
+  .dashboard { padding: 24px 16px; &__title { font-size: 32px; } &__date { display: none; } }
+  .summary-card { padding: 16px; &__value { font-size: 23px; letter-spacing: -.8px; } &__label { font-size: 14px; } &__icon { padding: 5px; } }
+  .panel { padding: 16px; }
+  .category-chart { gap: 16px; &__ring { width: 132px; height: 132px; padding: 13px; } }
+  .transactions__tools { gap: 8px; }
+  .search { flex-basis: 100%; }
+  .form { padding: 22px; &__row { grid-template-columns: 1fr; gap: 0; } &__actions { flex-wrap: wrap; } }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .button { transition: none; &:hover { transform: none; } }
+}

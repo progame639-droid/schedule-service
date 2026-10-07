@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101115">
+  <meta name="description" content="Поток — учет доходов и расходов, баланс и история операций.">
+  <title>Поток — личные финансы</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="dist/css/style.css">
+  <script src="js/auth.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <svg class="icons" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+    <symbol id="icon-wallet" viewBox="0 0 24 24"><path d="M20 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h15V8H5a2 2 0 0 1 0-4"/><path d="M20 12h-5v5h5M16 14.5h1"/></symbol>
+    <symbol id="icon-in" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+    <symbol id="icon-out" viewBox="0 0 24 24"><path d="m7 7 10 10M7 17h10V7"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></symbol>
+    <symbol id="icon-food" viewBox="0 0 24 24"><path d="M5 3v7M9 3v7M3 3v5a4 4 0 0 0 8 0V3M7 12v9M18 21V3c-5 2-5 11 0 11"/></symbol>
+    <symbol id="icon-transport" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="16" rx="4"/><path d="M4 10h16M8 15h1M15 15h1M7 19v2M17 19v2"/></symbol>
+    <symbol id="icon-entertainment" viewBox="0 0 24 24"><path d="M5 7h14l3 12h-5l-2-3H9l-2 3H2L5 7ZM6 11v4M4 13h4M16 11h1M18 14h1"/></symbol>
+    <symbol id="icon-bills" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5 9v12h14V9M10 21v-7h4v7"/></symbol>
+    <symbol id="icon-shopping" viewBox="0 0 24 24"><path d="M4 8h16l1 13H3L4 8ZM8 8V6a4 4 0 0 1 8 0v2"/></symbol>
+    <symbol id="icon-health" viewBox="0 0 24 24"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6V3Z"/></symbol>
+    <symbol id="icon-salary" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18M10 12v3h4v-3"/></symbol>
+    <symbol id="icon-freelance" viewBox="0 0 24 24"><path d="M8 8 4 12l4 4M16 8l4 4-4 4M14 4l-4 16"/></symbol>
+    <symbol id="icon-other" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h1M11.5 12h1M16 12h1"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  </svg>
+
+  <aside class="sidebar" aria-label="Навигация">
+    <a class="sidebar__brand" href="#overview"><span class="sidebar__mark" aria-hidden="true">п</span>поток<span class="sidebar__brand-dot">.</span></a>
+    <p class="sidebar__label">ЛИЧНОЕ ПРОСТРАНСТВО</p>
+    <nav class="sidebar__nav">
+      <a class="sidebar__link sidebar__link--active" href="#overview"><svg class="icon"><use href="#icon-grid"/></svg>Обзор</a>
+      <a class="sidebar__link" href="#transactions"><svg class="icon"><use href="#icon-wallet"/></svg>Операции</a>
+    </nav>
+    <div class="sidebar__bottom"><span class="sidebar__monogram">₸</span><p class="sidebar__note">Финансы под контролем</p><span class="sidebar__version">Expense Tracker / 01</span></div>
+  </aside>
+
+  <div class="workspace">
+    <header class="header">
+      <div class="header__breadcrumb">Личное пространство <span class="header__separator">/</span> <span class="header__current">Обзор</span></div>
+      <div class="header__profile"><span class="header__mode" id="mode-label">Деморежим</span><span class="header__name" id="profile-name">Гость</span><button class="button button--quiet header__auth" id="auth-button" type="button">Войти</button></div>
+    </header>
+
+    <main class="dashboard" id="overview">
+      <div class="dashboard__heading"><div><p class="dashboard__eyebrow" id="greeting">ТВОЙ ФИНАНСОВЫЙ ОБЗОР</p><h1 class="dashboard__title">Мои финансы<span class="dashboard__title-dot">.</span></h1><p class="dashboard__subtitle" id="context-label">Демонстрационные данные · хранятся в этом браузере</p></div><button class="button button--primary" id="add-button" type="button"><svg class="icon"><use href="#icon-plus"/></svg>Добавить операцию</button></div>
+      <div class="dashboard__period"><span class="dashboard__period-label">Период</span><label class="visually-hidden" for="period">Период учета</label><select class="control control--compact" id="period"><option value="all">Всё время</option><option value="month">Этот месяц</option><option value="last-month">Прошлый месяц</option></select><span class="dashboard__date" id="today"></span></div>
+
+      <section class="summary" aria-label="Финансовые итоги">
+        <article class="summary-card summary-card--balance"><div class="summary-card__top"><span class="summary-card__label">Общий баланс</span><svg class="icon"><use href="#icon-wallet"/></svg></div><h2 class="summary-card__value" id="balance">0 ₸</h2><div class="summary-card__bottom"><span class="summary-card__caption">Доходы минус расходы</span><span class="summary-card__tag">KZT</span></div></article>
+        <article class="summary-card summary-card--income"><div class="summary-card__top"><span class="summary-card__label">Доходы</span><span class="summary-card__icon"><svg class="icon"><use href="#icon-in"/></svg></span></div><h2 class="summary-card__value" id="income">0 ₸</h2><p class="summary-card__caption" id="income-count">0 операций</p></article>
+        <article class="summary-card summary-card--expense"><div class="summary-card__top"><span class="summary-card__label">Расходы</span><span class="summary-card__icon"><svg class="icon"><use href="#icon-out"/></svg></span></div><h2 class="summary-card__value" id="expense">0 ₸</h2><p class="summary-card__caption" id="expense-count">0 операций</p></article>
+      </section>
+
+      <section class="analytics" aria-label="Аналитика">
+        <article class="panel analytics__trend"><div class="panel__heading"><div><h2 class="panel__title">Движение денег</h2><p class="panel__subtitle">Доходы и расходы за последние 6 месяцев</p></div><div class="chart__legend"><span class="chart__legend-item chart__legend-item--income">Доходы</span><span class="chart__legend-item chart__legend-item--expense">Расходы</span></div></div><div class="chart" id="trend-chart"></div></article>
+        <article class="panel analytics__categories"><div class="panel__heading"><div><h2 class="panel__title">Куда уходят деньги</h2><p class="panel__subtitle">Расходы за выбранный период</p></div></div><div class="category-chart"><div class="category-chart__ring" id="category-ring" role="img" aria-label="Нет расходов"><div class="category-chart__center"><strong class="category-chart__value" id="category-count">0</strong><span class="category-chart__label">категорий</span></div></div><div class="category-chart__legend" id="category-legend"></div></div></article>
+      </section>
+
+      <section class="panel transactions" id="transactions" aria-labelledby="transactions-title"><div class="panel__heading transactions__heading"><div><h2 class="panel__title" id="transactions-title">История операций <span class="transactions__count" id="transaction-count">0</span></h2><p class="panel__subtitle">Каждая операция на своём месте</p></div><div class="transactions__tools"><label class="search"><svg class="icon"><use href="#icon-search"/></svg><input class="search__input" id="search" type="search" placeholder="Найти операцию" aria-label="Найти операцию"></label><label class="visually-hidden" for="type-filter">Тип операций</label><select class="control control--compact" id="type-filter"><option value="all">Все операции</option><option value="income">Доходы</option><option value="expense">Расходы</option></select></div></div>
+      <div class="transactions__columns" aria-hidden="true"><span>Операция</span><span>Категория</span><span>Дата</span><span>Сумма</span><span></span></div><ul class="transactions__list" id="transaction-list" aria-label="Операции"></ul><div class="empty" id="empty-state" hidden><svg class="icon empty__icon"><use href="#icon-wallet"/></svg><h3 class="empty__title">Пока нет операций</h3><p class="empty__text">Добавьте первую операцию, чтобы увидеть баланс.</p></div><p class="transactions__footer" id="list-footer">Загрузка операций…</p></section>
+      <footer class="dashboard__footer"><span>поток. / личные финансы</span><span id="storage-label">Демо · данные только на этом устройстве</span></footer>
+    </main>
+  </div>
+
+  <dialog class="modal" id="transaction-modal" aria-labelledby="modal-title"><form class="form" id="transaction-form"><div class="form__heading"><div><p class="form__eyebrow">УЧЁТ ФИНАНСОВ</p><h2 class="form__title" id="modal-title">Новая операция</h2></div><button class="icon-button" type="button" data-close="transaction-modal" aria-label="Закрыть"><svg class="icon"><use href="#icon-close"/></svg></button></div>
+    <fieldset class="form__types"><legend class="visually-hidden">Тип операции</legend><label class="form__type"><input class="form__radio" type="radio" name="type" value="expense" checked><span class="form__type-label">Расход</span></label><label class="form__type"><input class="form__radio" type="radio" name="type" value="income"><span class="form__type-label">Доход</span></label></fieldset>
+    <label class="form__label" for="title">Название</label><input class="control" id="title" name="title" maxlength="100" placeholder="Например, продукты на неделю" required>
+    <label class="form__label" for="amount">Сумма в тенге</label><input class="control form__amount" id="amount" name="amount" type="text" inputmode="decimal" placeholder="0,00" pattern="[0-9]+([.,][0-9]{1,2})?" maxlength="12" required>
+    <div class="form__row"><div class="form__field"><label class="form__label" for="category">Категория</label><select class="control" id="category" name="category" required></select></div><div class="form__field"><label class="form__label" for="date">Дата</label><input class="control" id="date" name="date" type="date" required></div></div>
+    <p class="form__error" id="form-error" role="alert" hidden></p><div class="form__actions"><button class="button button--quiet" type="button" data-close="transaction-modal">Отмена</button><button class="button button--primary" id="save-button" type="submit">Сохранить операцию</button></div><p class="form__hint" id="form-storage">Операция сохранится в этом браузере.</p>
+  </form></dialog>
+
+  <dialog class="modal modal--small" id="delete-modal" aria-labelledby="delete-title"><div class="form"><h2 class="form__title" id="delete-title">Удалить операцию?</h2><p class="form__hint" id="delete-description"></p><div class="form__actions"><button class="button button--quiet" type="button" data-close="delete-modal">Отмена</button><button class="button button--danger" id="confirm-delete" type="button">Удалить</button></div></div></dialog>
+  <dialog class="modal auth" id="auth-modal" aria-labelledby="auth-title">
+    <form class="form auth__form" id="auth-form">
+      <div class="form__heading"><div><p class="form__eyebrow">ПОТОК / ЛИЧНЫЙ АККАУНТ</p><h2 class="form__title" id="auth-title">С возвращением</h2></div><button class="icon-button" type="button" data-close="auth-modal" aria-label="Закрыть"><svg class="icon"><use href="#icon-close"/></svg></button></div>
+      <p class="auth__account" id="auth-account" hidden></p><p class="auth__description" id="auth-description">Войдите по email и паролю.</p>
+      <div class="auth__tabs" id="auth-tabs"><button class="auth__tab auth__tab--active" type="button" data-auth-view="login" aria-pressed="true">Вход</button><button class="auth__tab" type="button" data-auth-view="register" aria-pressed="false">Регистрация</button></div>
+      <div id="auth-email-field"><label class="form__label" for="auth-email">Email</label><input class="control" id="auth-email" name="email" type="email" autocomplete="username" maxlength="254" placeholder="you@example.com" required></div>
+      <div id="auth-password-field"><div class="auth__password-label"><label class="form__label" for="auth-password">Пароль</label><button class="auth__text-button" id="auth-show-password" type="button" aria-pressed="false">Показать</button></div><input class="control" id="auth-password" name="password" type="password" autocomplete="current-password" maxlength="72" required><p class="auth__hint" id="auth-password-hint" hidden>От 14 символов: A–Z, a–z, цифра и символ. Используйте уникальный пароль из менеджера паролей. Максимум 72 байта.</p></div>
+      <div id="auth-confirm-field" hidden><label class="form__label" for="auth-confirm">Повторите пароль</label><input class="control" id="auth-confirm" name="passwordConfirm" type="password" autocomplete="new-password" maxlength="72"></div>
+      <div class="auth__enrollment" id="auth-enrollment" hidden><img class="auth__qr" id="auth-qr" alt="QR-код для подключения второго фактора"><p class="auth__hint">Не можете отсканировать? Введите ключ вручную:</p><code class="auth__secret" id="auth-secret"></code><p class="auth__hint">Сохраните этот ключ в защищённом хранилище. Он понадобится при потере устройства. Не отправляйте ключ другим людям.</p></div>
+      <div id="auth-code-field" hidden><label class="form__label" for="auth-code">Код из аутентификатора</label><input class="control auth__code" id="auth-code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" minlength="6" maxlength="6" placeholder="000000"></div>
+      <div class="auth__captcha" id="captcha"></div>
+      <p class="auth__message" id="auth-message" role="status" aria-live="polite" hidden></p>
+      <button class="button button--primary auth__submit" id="auth-submit" type="submit">Войти</button>
+      <button class="auth__text-button auth__forgot" id="auth-forgot" type="button">Забыли пароль?</button><button class="auth__text-button auth__forgot" id="auth-back" type="button" hidden>Вернуться ко входу</button>
+      <button class="auth__text-button auth__forgot" id="auth-logout" type="button" hidden>Выйти на всех устройствах</button><p class="auth__security">Доступ к финансам — после подтверждения почты и второго фактора.</p>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <noscript><p class="noscript">Для работы приложения включите JavaScript.</p></noscript>
+</body>
+</html>
